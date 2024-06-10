@@ -1,0 +1,25 @@
+version: '1.1'
+
+networks:
+  chatbot-knowledgebased-net:
+    external: true
+services:
+  chatbot-knowledgebased-frontend:
+    build: .
+    image: chatbot-knowledgebased-frontend-staging-docker-image
+    container_name: chatbot-knowledgebased-frontend-staging-ctr
+    restart: always
+    ports:
+      - 3031:3000
+    networks:
+      - chatbot-knowledgebased-net
+    environment:
+      REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL}
+      REACT_APP_GOOGLE_LOGIN: ${REACT_APP_GOOGLE_LOGIN}
+      REACT_APP_FACEBOOK_LOGIN: ${REACT_APP_FACEBOOK_LOGIN}
+      REACT_APP_LINKEDIN_LOGIN: ${REACT_APP_LINKEDIN_LOGIN}
+      REACT_APP_RAZORPAY_CREDENTIAL: ${REACT_APP_RAZORPAY_CREDENTIAL}
+      REACT_APP_RAZORPAY_CLIENT_NAME: ${REACT_APP_RAZORPAY_CLIENT_NAME}
+      REACT_APP_FREE_PLAN_ID: ${REACT_APP_FREE_PLAN_ID}
+      REACT_APP_GTM_ID: ${REACT_APP_GTM_ID}
+      CONTACT_US_MIN_MESSAGE_LENGTH: ${CONTACT_US_MIN_MESSAGE_LENGTH}
